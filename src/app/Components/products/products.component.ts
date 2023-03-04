@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -23,7 +24,8 @@ export class ProductsComponent {
   constructor(
     private as: ApiService,
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+
   ) {
     this.breakpointObserver
       .observe([
@@ -55,17 +57,20 @@ export class ProductsComponent {
   }
 
   ngOnInit(): void {
+
     this.getAllProducts();
   }
   getAllProducts() {
     this.as.requestProducts().subscribe(
       (data) => {
+
         this.Products = data.products;
-        this.Products.forEach((ele:any) => {
-            ele.launchedDate= this.getRandomDate();
+        this.Products.forEach((ele: any) => {
+          ele.launchedDate = this.getRandomDate();
         });
       },
       (err) => {
+     
         console.log(err);
       }
     );

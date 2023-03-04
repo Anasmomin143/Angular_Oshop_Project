@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 // import { createPasswordStrengthValidator } from 'src/app/utils/utils';
 
 @Component({
@@ -26,7 +27,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       // ),
     ]),
   });
-  constructor(private as: ApiService, private router: Router) {}
+  constructor(
+    private as: ApiService,
+    private router: Router,
+
+  ) {}
   ngOnInit(): void {
     this.subscriptions.add(this.loginForm.valueChanges.subscribe(console.log));
   }
@@ -34,14 +39,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     // console.log('login works')
     const user = this.loginForm.value;
+
     this.subscriptions.add(
       this.as.requestLogin(user).subscribe(
         (data) => {
+
           console.log(data);
-                    localStorage.setItem('userDetails', JSON.stringify(data));
-                    this.router.navigate(['/home/products']);
+          localStorage.setItem('userDetails', JSON.stringify(data));
+          this.router.navigate(['/home/products']);
         },
         (err) => {
+          
           this.messageError = err.error.message;
           console.log('messageError', this.messageError);
         }
