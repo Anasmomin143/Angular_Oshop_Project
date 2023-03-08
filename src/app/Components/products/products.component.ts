@@ -24,8 +24,7 @@ export class ProductsComponent {
   constructor(
     private as: ApiService,
     private breakpointObserver: BreakpointObserver,
-    private router: Router,
-
+    private router: Router
   ) {
     this.breakpointObserver
       .observe([
@@ -57,20 +56,17 @@ export class ProductsComponent {
   }
 
   ngOnInit(): void {
-
     this.getAllProducts();
   }
   getAllProducts() {
     this.as.requestProducts().subscribe(
       (data) => {
-
         this.Products = data.products;
         this.Products.forEach((ele: any) => {
           ele.launchedDate = this.getRandomDate();
         });
       },
       (err) => {
-     
         console.log(err);
       }
     );
@@ -99,5 +95,8 @@ export class ProductsComponent {
     const maxDate = Date.now();
     const timestamp = Math.floor(Math.random() * maxDate);
     return new Date(timestamp);
+  }
+  getDataFromProductDetails(event:any){
+console.log("data from child",event)
   }
 }

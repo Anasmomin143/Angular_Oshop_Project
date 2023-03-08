@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Product } from './../../Models/app.model';
 import { ApiService } from './../../services/api.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,9 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDetailsComponent {
   // ProductId: any;
   // product: any;
-  $product: Observable<any> = this.as.requestProductDetailsById(
-    this.route.snapshot.paramMap.get('id')
-  );
+
+  @Input() product: any;
+  @Output() emmitAddtoCart = new EventEmitter()
 
   constructor(private as: ApiService, private route: ActivatedRoute) {
     // this.product;
@@ -24,6 +24,9 @@ export class ProductDetailsComponent {
     // this.getProductById();
   }
 
+  handleAddToCart(){
+    this.emmitAddtoCart.emit(this.product)
+  }
   // getProductById() {
   //   this.as.requestProductDetailsById(this.ProductId).subscribe((data) => {
   //     this.product = data;

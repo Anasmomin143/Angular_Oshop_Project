@@ -7,6 +7,7 @@
         <div class="product-title">
           <h4> model : {{Product.title | uppercase}}</h4>
           <h4> launched Date : {{Product.launchedDate | date:'dd/MM/yy'}}</h4>
+          <app-product-details (emmitAddtoCart)="getDataFromProductDetails($event)" [product]="Product"></app-product-details>
           <h4> category : {{Product.category | lowercase}}</h4>
           <h4> Price : {{ Product.price | currency:'INR':'symbol':'1.0-1'}}</h4>
           <h4> Rating : {{Product.rating}}</h4>

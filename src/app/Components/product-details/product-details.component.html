@@ -1,4 +1,4 @@
-<div class="conatiner" *ngIf="$product |async as product">
+<!-- <div class="conatiner" *ngIf="$product |async as product">
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>{{product.category}}</mat-card-title>
@@ -31,4 +31,9 @@
     </mat-card-actions>
   </mat-card>
 
-</div>
+</div> -->
+
+
+<span>description: {{product.description}}</span><br>
+<button color="warn" (click)="handleAddToCart()"  mat-button>ADD TO CART</button>
+
