@@ -5,13 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CartService {
-  CartItem: CartItem[]=[]
+  cartItem: CartItem[]=[]
 
   get CurrentCartItem(){
-    return this.CartItem;
+    return this.cartItem;
   }
 addCartItem(item:CartItem){
-this.CartItem.push(item);
+this.cartItem.push(item);
 }
   constructor() {}
 }

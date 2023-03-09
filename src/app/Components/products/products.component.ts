@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -76,7 +75,7 @@ export class ProductsComponent {
   handleBuyNow(item: any) {
     console.log('item in buy now', item);
   }
- 
+
   productDetails(Product: Product) {
     this.router.navigate(['/home/product-details/' + Product.id]);
   }
@@ -87,6 +86,6 @@ export class ProductsComponent {
   }
   getDataFromProductDetails(event:any){
     this.cs.addCartItem(event)
-console.log("data from child",event)
+
   }
 }

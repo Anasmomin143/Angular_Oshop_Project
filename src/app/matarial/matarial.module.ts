@@ -8,6 +8,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   declarations: [],
   imports: [
@@ -20,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatGridListModule,
     MatToolbarModule,
     NgxSpinnerModule,
+    MatIconModule,
+    MatBadgeModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -31,6 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatGridListModule,
     MatToolbarModule,
     NgxSpinnerModule,
+    MatIconModule,
+    MatBadgeModule,
   ],
 })
 export class MatarialModule {}
