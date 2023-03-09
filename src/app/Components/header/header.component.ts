@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,20 +13,19 @@ import { Location } from '@angular/common';
 export class HeaderComponent {
   user: any;
   cartItems: Product[] = [];
-  cartItemsLength: any = null;
+  cartItemsLength: any = 0;
+
   constructor(
     private router: Router,
     private as: ApiService,
-    private _location: Location
+    private _location: Location,
+    private cs :CartService
   ) {}
   ngOnInit(): void {
-    this.as.dataStream.subscribe((data) => {
-      this.cartItemsLength = data.length;
-      this.cartItems = data;
-    });
+
     this.user = JSON.parse(localStorage.getItem('userDetails') as any);
-    this.cartItems = JSON.parse(localStorage.getItem('cart') as any);
-    this.cartItemsLength = this.cartItems.length;
+   this.cartItemsLength= this.cs.CurrentCartItem.length
+   console.log('cartItemsLength', this.cartItemsLength);
   }
   LogoutUser() {
     localStorage.clear();

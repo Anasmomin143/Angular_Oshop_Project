@@ -9,7 +9,7 @@ export interface Product {
   brand: string;
   category: string;
   thumbnail: number;
-  quantity: number;
+
   images: string[];
 }
 
@@ -18,4 +18,9 @@ export interface PRODUCTS_API_RESPONSE {
   products: Product[];
   skip: number;
   total: number;
+}
+
+export interface CartItem {
+  Product: Product;
+  quantity: number;
 }

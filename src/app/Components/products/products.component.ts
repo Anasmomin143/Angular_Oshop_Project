@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { Product } from './../../Models/app.model';
 import { ApiService } from './../../services/api.service';
 import { Component } from '@angular/core';
@@ -24,7 +25,8 @@ export class ProductsComponent {
   constructor(
     private as: ApiService,
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private cs :CartService
   ) {
     this.breakpointObserver
       .observe([
@@ -74,20 +76,7 @@ export class ProductsComponent {
   handleBuyNow(item: any) {
     console.log('item in buy now', item);
   }
-  handleAddToCart(item: any) {
-    // this.addToCart.push(item);
-    // console.log('items in add to cart', this.addToCart);
-    let cart = [];
-    if (localStorage.getItem('cart')) {
-      cart = JSON.parse(localStorage.getItem('cart') as any);
-      cart = [...cart, item];
-      localStorage.setItem('cart', JSON.stringify(cart));
-    } else {
-      cart = [item];
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-    this.as.dataStream.next(cart);
-  }
+ 
   productDetails(Product: Product) {
     this.router.navigate(['/home/product-details/' + Product.id]);
   }
@@ -97,6 +86,7 @@ export class ProductsComponent {
     return new Date(timestamp);
   }
   getDataFromProductDetails(event:any){
+    this.cs.addCartItem(event)
 console.log("data from child",event)
   }
 }
