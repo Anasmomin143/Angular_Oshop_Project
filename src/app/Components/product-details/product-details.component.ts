@@ -13,7 +13,7 @@ export class ProductDetailsComponent {
   // ProductId: any;
   // product: any;
 
-  @Input() product: any;
+  @Input() productDetails: any;
   @Output() emmitAddtoCart = new EventEmitter()
 
   constructor(private as: ApiService, private route: ActivatedRoute) {
@@ -25,7 +25,7 @@ export class ProductDetailsComponent {
   }
 
   handleAddToCart(){
-    this.emmitAddtoCart.emit(this.product)
+    this.emmitAddtoCart.emit(this.productDetails);
   }
   // getProductById() {
   //   this.as.requestProductDetailsById(this.ProductId).subscribe((data) => {

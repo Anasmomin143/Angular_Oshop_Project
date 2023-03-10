@@ -5,8 +5,8 @@
     </div>
 
     <button mat-raised-button (click)="backToPrevPage()" >back To prev</button>
-      <mat-icon routerLink="/home/cart" matBadge="{{cartItemsLength}}" matBadgeColor="primary">shopping_cart</mat-icon>
-    
+      <mat-icon routerLink="/home/cart" matBadge="{{cartItemsLength}}" matBadgeColor="warn">shopping_cart</mat-icon>
+
     <button mat-raised-button routerLink="/user-profile" >My Profile</button>
     <button mat-raised-button  (click)="LogoutUser()">Logout</button>
 </mat-toolbar>

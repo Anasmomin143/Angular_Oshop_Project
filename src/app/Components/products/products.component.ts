@@ -25,7 +25,7 @@ export class ProductsComponent {
     private as: ApiService,
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private cs :CartService
+    private cs: CartService
   ) {
     this.breakpointObserver
       .observe([
@@ -84,8 +84,8 @@ export class ProductsComponent {
     const timestamp = Math.floor(Math.random() * maxDate);
     return new Date(timestamp);
   }
-  getDataFromProductDetails(event:any){
-    this.cs.addCartItem(event)
-
+  getDataFromProductDetails($event: any) {
+    const cartItem = { productDetails: $event, quantity: 1 };
+    this.cs.addCartItem(cartItem);
   }
 }

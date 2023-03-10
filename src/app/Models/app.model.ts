@@ -21,6 +21,6 @@ export interface PRODUCTS_API_RESPONSE {
 }
 
 export interface CartItem {
-  Product: Product;
+  productDetails: Product;
   quantity: number;
 }

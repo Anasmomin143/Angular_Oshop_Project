@@ -11,9 +11,13 @@ export class CartService {
 
 
 addCartItem(item:CartItem){
-const items = []
+  console.log(this.$cartItem.value);
+this.$cartItem.value.find((i)=>{
+ console.log("item in cart serves",i)
+})
+const items = [];
 items.push(...this.$cartItem.value);
-items.push(item)
+items.push(item);
 this.$cartItem.next(items)
 }
 }
