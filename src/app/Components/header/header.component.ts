@@ -19,19 +19,20 @@ export class HeaderComponent {
     private router: Router,
     private as: ApiService,
     private _location: Location,
-    private cs :CartService
+    private cs: CartService
   ) {}
   ngOnInit(): void {
-
     this.user = JSON.parse(localStorage.getItem('userDetails') as any);
-   this.cartItemsLength= this.cs.CurrentCartItem.length
-   console.log('cartItemsLength', this.cartItemsLength);
+    this.cs.$cartItem.subscribe((value) => {
+      this.cartItemsLength = value.length;
+    });
+    console.log('cartItemsLength', this.cartItemsLength);
   }
   LogoutUser() {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
   backToPrevPage() {
-    this._location.back()
+    this._location.back();
   }
 }

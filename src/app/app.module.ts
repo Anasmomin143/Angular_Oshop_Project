@@ -1,3 +1,4 @@
+import { CartService } from './services/cart.service';
 import { MatarialModule } from './matarial/matarial.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -48,6 +49,7 @@ import { UserNameFormatterPipe } from './Pipes/user-name-formatter.pipe';
       useClass: ApiInterceptor,
       multi: true,
     },
+    CartService,
   ],
   bootstrap: [AppComponent],
 })
