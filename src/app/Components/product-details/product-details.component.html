@@ -1,39 +1,8 @@
-<!-- <div class="conatiner" *ngIf="$product |async as product">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>{{product.category}}</mat-card-title>
-      <mat-card-title>{{product.title}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-lg-image
-      [src]="product.images[0]">
-    <mat-card-content>
-      <p>
-        Price : {{product.price}}
-      </p>
-      <p>
-        description : {{product.description}}
-      </p>
-      <p>
-        discountPercentage : {{product.discountPercentage}}
-      </p>
-      <p>
-        rating : {{product.rating}}
-      </p>
-      <p>
-        stock : {{product.stock}}
-      </p>
-      <p>
-        brand : {{product.brand}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-
-    </mat-card-actions>
-  </mat-card>
-
-</div> -->
-
-
 <span>description: {{productDetails.description}}</span><br>
-<button color="warn" (click)="handleAddToCart()"  mat-button>ADD TO CART</button>
+<button color="warn" *ngIf=" !productDetails?.quantity || productDetails?.quantity < 1" (click)="handleAddToCart()"  mat-raised-button color="primary">ADD TO CART</button>
 
+<div class="cart-action-container" *ngIf="productDetails?.quantity > 0">
+  <mat-icon class="remove" (click)="handleRemoveCartItem()" >remove_circle_outline</mat-icon>
+  <span>{{productDetails?.quantity}}</span>
+  <mat-icon class="add" (click)="handleAddToCart()">add_circle_outline</mat-icon>
+</div>

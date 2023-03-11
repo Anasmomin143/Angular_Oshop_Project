@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { Observable } from 'rxjs';
 import { Product } from './../../Models/app.model';
 import { ApiService } from './../../services/api.service';
@@ -10,31 +11,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent {
-  // ProductId: any;
-  // product: any;
 
   @Input() productDetails: any;
   @Output() emmitAddtoCart = new EventEmitter()
 
-  constructor(private as: ApiService, private route: ActivatedRoute) {
-    // this.product;
+  constructor(private as: ApiService, private route: ActivatedRoute,private cs :CartService) {
+
   }
   ngOnInit(): void {
-    // this.getIdFromUrl();
-    // this.getProductById();
+
   }
 
   handleAddToCart(){
+    console.log(this.productDetails, 'in productDetails');
     this.emmitAddtoCart.emit(this.productDetails);
   }
-  // getProductById() {
-  //   this.as.requestProductDetailsById(this.ProductId).subscribe((data) => {
-  //     this.product = data;
-  //   });
-  // }
 
-  // getIdFromUrl() {
-  //   this.ProductId = this.route.snapshot.paramMap.get('id');
-  //   console.log(this.ProductId);
-  // }
+  handleRemoveCartItem(){
+    this.cs.removeCartItem(this.productDetails)
+  }
+
 }

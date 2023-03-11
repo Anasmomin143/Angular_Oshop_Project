@@ -14,7 +14,6 @@ export class HeaderComponent {
   user: any;
   cartItems: Product[] = [];
   cartItemsLength: any = 0;
-
   constructor(
     private router: Router,
     private as: ApiService,
@@ -23,10 +22,13 @@ export class HeaderComponent {
   ) {}
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('userDetails') as any);
-    this.cs.$cartItem.subscribe((value) => {
-      this.cartItemsLength = value.length;
+    this.cs.$cartItem.subscribe((cartItem) => {
+      let totalCount = 0;
+      cartItem.forEach((item) => {
+        totalCount = totalCount + item.quantity;
+      });
+      this.cartItemsLength = totalCount;
     });
-    console.log('cartItemsLength', this.cartItemsLength);
   }
   LogoutUser() {
     localStorage.clear();

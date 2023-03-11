@@ -1,0 +1,27 @@
+.cart-action-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cart-action-container span {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.remove {
+  color: red;
+}
+
+.add {
+  color: green;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}

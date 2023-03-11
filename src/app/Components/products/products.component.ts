@@ -1,5 +1,5 @@
 import { CartService } from './../../services/cart.service';
-import { Product } from './../../Models/app.model';
+import { Product, CartItem } from './../../Models/app.model';
 import { ApiService } from './../../services/api.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent {
   addToCart: any = [];
+  cartItems: CartItem[] = [];
   cols: any;
-  Products: any = [];
+  products: any = [];
   gridByBreakpoint: any = {
     xl: 3,
     lg: 3,
@@ -58,12 +59,13 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.getCartItem();
   }
   getAllProducts() {
     this.as.requestProducts().subscribe(
       (data) => {
-        this.Products = data.products;
-        this.Products.forEach((ele: any) => {
+        this.products = data.products;
+        this.products.forEach((ele: any) => {
           ele.launchedDate = this.getRandomDate();
         });
       },
@@ -76,6 +78,24 @@ export class ProductsComponent {
     console.log('item in buy now', item);
   }
 
+  getCartItem() {
+    this.cs.$cartItem.subscribe((items) => {
+      this.cartItems = items;
+      if(this.cartItems.length) {
+        this.cartItems.forEach((item) => {
+          const productIndex = this.products.findIndex((product: any) => {
+            return product.id === item.productDetails.id;
+          });
+          this.products[productIndex].quantity = item.quantity;
+        });
+      }else {
+        this.products.forEach((product:any) => {
+              product.quantity = 0
+        });
+      }
+
+    });
+  }
   productDetails(Product: Product) {
     this.router.navigate(['/home/product-details/' + Product.id]);
   }

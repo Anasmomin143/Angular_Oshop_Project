@@ -1,4 +1,4 @@
-import { CartItem } from './../Models/app.model';
+import { CartItem, Product } from './../Models/app.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -7,17 +7,32 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
   constructor() {}
-  public $cartItem = new BehaviorSubject<CartItem[]>([])
+  public $cartItem = new BehaviorSubject<CartItem[]>([]);
 
-
-addCartItem(item:CartItem){
-  console.log(this.$cartItem.value);
-this.$cartItem.value.find((i)=>{
- console.log("item in cart serves",i)
-})
-const items = [];
-items.push(...this.$cartItem.value);
-items.push(item);
-this.$cartItem.next(items)
-}
+  addCartItem(item: CartItem) {
+    const items: CartItem[] = [];
+    items.push(...this.$cartItem.value);
+    const existingIndex = items.findIndex((existingitem) => {
+      return existingitem.productDetails.id === item.productDetails.id;
+    });
+    if (existingIndex > -1) {
+      items[existingIndex].quantity += 1;
+    } else {
+      items.push(item);
+    }
+    this.$cartItem.next(items);
+  }
+  removeCartItem(item: Product) {
+    const items: CartItem[] = [];
+    items.push(...this.$cartItem.value);
+    const existingIndex = items.findIndex((existingitem) => {
+      return existingitem.productDetails.id === item.id;
+    });
+    if(items[existingIndex].quantity > 1 ){
+      items[existingIndex].quantity -= 1;
+    }else{
+      items.splice(existingIndex,1);
+    }
+    this.$cartItem.next(items);
+  }
 }
