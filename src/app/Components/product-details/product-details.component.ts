@@ -26,9 +26,7 @@ export class ProductDetailsComponent {
     console.log(this.productDetails, 'in productDetails');
     this.emmitAddtoCart.emit(this.productDetails);
   }
-
   handleRemoveCartItem(){
     this.cs.removeCartItem(this.productDetails)
   }
-
 }

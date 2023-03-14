@@ -1,1 +1,26 @@
-<p>cart works!</p>
+
+<mat-card class="example-card">
+  <div class="cartitems" *ngFor="let item of cartItems">
+    <mat-card-header>
+      <img mat-card-md-image
+        [src]="item.productDetails.images[0]"
+        alt="Image of a Shiba Inu">
+      <mat-card-title-group>
+        <mat-card-title>{{item.productDetails.title}}</mat-card-title>
+        <mat-card-subtitle>{{item.productDetails.description}}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="cart-action-container" >
+        <mat-icon class="remove" (click)="removeCartitem(item)" >remove_circle_outline</mat-icon>
+        <span>{{item.quantity}}</span>
+        <mat-icon class="add">add_circle_outline</mat-icon>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+       <div style="margin-left: 50px;">
+        {{item.productDetails.price}}
+      </div>
+    </mat-card-footer>
+  </div>
+</mat-card>

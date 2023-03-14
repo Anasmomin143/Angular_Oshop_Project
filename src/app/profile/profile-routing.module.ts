@@ -19,7 +19,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)],
 })
 export class ProfileRoutingModule {}

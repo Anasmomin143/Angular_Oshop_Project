@@ -80,6 +80,7 @@ export class ProductsComponent {
 
   getCartItem() {
     this.cs.$cartItem.subscribe((items) => {
+      
       this.cartItems = items;
       if(this.cartItems.length) {
         this.cartItems.forEach((item) => {

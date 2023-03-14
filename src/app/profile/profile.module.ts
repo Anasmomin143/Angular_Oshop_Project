@@ -3,13 +3,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [ProfileComponent],
   imports: [
-    CommonModule,
     ProfileRoutingModule,
+    FormsModule,
+    BrowserModule,
+    CommonModule,
     MatarialModule,
     ReactiveFormsModule,
   ],

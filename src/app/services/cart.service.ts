@@ -14,7 +14,7 @@ export class CartService {
     items.push(...this.$cartItem.value);
     const existingIndex = items.findIndex((existingitem) => {
       return existingitem.productDetails.id === item.productDetails.id;
-    });
+    })
     if (existingIndex > -1) {
       items[existingIndex].quantity += 1;
     } else {
