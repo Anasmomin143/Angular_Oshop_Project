@@ -80,7 +80,7 @@ export class ProductsComponent {
 
   getCartItem() {
     this.cs.$cartItem.subscribe((items) => {
-      
+
       this.cartItems = items;
       if(this.cartItems.length) {
         this.cartItems.forEach((item) => {
@@ -106,7 +106,12 @@ export class ProductsComponent {
     return new Date(timestamp);
   }
   getDataFromProductDetails($event: any) {
-    const cartItem = { productDetails: $event, quantity: 1 };
-    this.cs.addCartItem(cartItem);
+    if ($event.actionType === 'ADD') {
+       const cartItem = { productDetails: $event.item, quantity: 1 };
+       this.cs.addCartItem(cartItem)
+    }else{
+      const cartItem = { productDetails: $event.item, quantity: 1 };
+      this.cs.removeCartItem(cartItem);
+    }
   }
 }

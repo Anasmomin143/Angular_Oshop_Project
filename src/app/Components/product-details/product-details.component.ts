@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDetailsComponent {
 
   @Input() productDetails: any;
-  @Output() emmitAddtoCart = new EventEmitter()
+  @Output() cardtAction = new EventEmitter()
 
   constructor(private as: ApiService, private route: ActivatedRoute,private cs :CartService) {
 
@@ -23,10 +23,15 @@ export class ProductDetailsComponent {
   }
 
   handleAddToCart(){
-    console.log(this.productDetails, 'in productDetails');
-    this.emmitAddtoCart.emit(this.productDetails);
+    this.cardtAction.emit({
+      actionType:"ADD",
+      item:this.productDetails
+    });
   }
   handleRemoveCartItem(){
-    this.cs.removeCartItem(this.productDetails)
+     this.cardtAction.emit({
+       actionType: 'REMOVE',
+       item: this.productDetails
+     });
   }
 }
