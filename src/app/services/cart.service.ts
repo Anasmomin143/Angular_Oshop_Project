@@ -19,8 +19,8 @@ export class CartService {
     });
   }
   addCartItem(item: CartItem) {
-    const items =this.existingCartItem
-    const existingIndex = this.getItemIndexFromCart(item)
+    const items = this.existingCartItem;
+    const existingIndex = this.getItemIndexFromCart(item);
     if (existingIndex > -1) {
       items[existingIndex].quantity += 1;
     } else {
@@ -28,9 +28,9 @@ export class CartService {
     }
     this.$cartItem.next(items);
   }
-  removeCartItem(item :CartItem) {
-    const items =this.existingCartItem
-    const existingIndex = this.getItemIndexFromCart(item)
+  removeCartItem(item: CartItem) {
+    const items = this.existingCartItem;
+    const existingIndex = this.getItemIndexFromCart(item);
     if (items[existingIndex].quantity > 1) {
       items[existingIndex].quantity -= 1;
     } else {
@@ -39,10 +39,10 @@ export class CartService {
     this.$cartItem.next(items);
   }
 
-  deleteCartItem(item:CartItem){
-    const items =this.existingCartItem
+  deleteCartItem(item: CartItem) {
+    const items = this.existingCartItem;
     const existingIndex = this.getItemIndexFromCart(item);
-    items.splice(existingIndex,1)
-    this.$cartItem.next(items)
+    items.splice(existingIndex, 1);
+    this.$cartItem.next(items);
   }
 }
